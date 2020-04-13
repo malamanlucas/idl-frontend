@@ -1,0 +1,21 @@
+{
+  "/corporacao": "/getCorporacoesAndEmpresas",
+  "/api/corporacao": "/getCorporacoes",
+  "/api/corporacao/1/empresas": "/getEmpresasOfCorporacao",
+  "/api/corporacao/1/empresas/1": "/getEmpresaOfCorporacaoById",
+  "/pessoa/listaFuncionarios/": "/getFuncionarios",
+  "/empresa?possuiCorporacao=false": "/getEmpresasWithoutCorporacoes",
+  "/empresa": "/empresas",
+  "/empresa/161": "/getEmpresaById",
+  "/empresa/3": "/getEmpresaByIdWithCorporacao",
+  "/empresa/cnpj/11111111111111": "/getEmpresaByCnpjInDataBase",
+  "/empresa/cnpj/22222222222222": "/getEmpresaByCnpjInWsReceita",
+  "/funcao/empresa/161": "/funcoes",
+  "/funcao/empresa/161/funcao/193": "/getFuncao",
+  "/setor/empresa/161": "/getSetoresOfEmpresaOfCorporacao",
+  "/setor/1": "/getSetor",
+  "/location/buscarLocalizacao/SP": "/cidadesSP",
+  "/location/buscarLocalizacao/RJ": "/cidadesRJ",
+  "/admin/riscos": "/getRiscos",
+  "/admin/exames": "/getExames"
+}

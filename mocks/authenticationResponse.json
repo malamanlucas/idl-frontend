@@ -1,0 +1,86 @@
+{
+  "authentication": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6W3siaWRfcGVzc29hIjo1LCJ1c3VhcmlvIjoiaHVnb2xlb2xpbWFAZ21haWwuY29tIiwic2VuaGEiOiIyMDJjYjk2MmFjNTkwNzViOTY0YjA3MTUyZDIzNGI3MCIsImRhdGFfdWx0aW1vX2FjZXNzbyI6IjIwMTgtMDktMThUMDA6MDA6MDAuMDAwWiIsInN0YXR1cyI6MSwidGlwb191c3VhcmlvIjoxLCJpZF9tb2R1bG9zX2FjZXNzbyI6IjEsMiwzLDQsNSw2LDcsOCIsInRyb2Nhcl9zZW5oYSI6bnVsbCwibWQ1X2hhc2giOm51bGx9XSwiaWF0IjoxNTY5MDg5NDU1LCJleHAiOjE1NjkwOTY2NTV9.-gdYli2EayG3Lnr5iq7Oz_BfjsXUBfQVaAlk8Syt6sw",
+  "mustChangePassword": false,
+  "changePasswordHash": null,
+  "user": {
+    "id_pessoa": 5,
+    "usuario": "hugoleolima@gmail.com",
+    "senha": "202cb962ac59075b964b07152d234b70",
+    "data_ultimo_acesso": "2018-09-18T00:00:00.000Z",
+    "status": 1,
+    "tipo_usuario": 1,
+    "id_modulos_acesso": "1,2,3,4,5,6,7,8",
+    "trocar_senha": null,
+    "md5_hash": null
+  },
+  "menus": [
+    {
+      "id_aplicacao": 1,
+      "nome_exibicao": "Cadastro",
+      "url_acesso": "#",
+      "icone": "fa-file",
+      "id_aplicacao_pai": null,
+      "ordem": 1,
+      "child_menus": [
+        {
+          "id_aplicacao": 2,
+          "nome_exibicao": "Empresas",
+          "url_acesso": "cadastro/empresas",
+          "icone": "icone01",
+          "id_aplicacao_pai": 1,
+          "ordem": 1
+        },
+        {
+          "id_aplicacao": 3,
+          "nome_exibicao": "Funcionarios",
+          "url_acesso": "cadastro/funcionarios",
+          "icone": "icone02",
+          "id_aplicacao_pai": 1,
+          "ordem": 2
+        },
+        {
+          "id_aplicacao": 4,
+          "nome_exibicao": "Funções",
+          "url_acesso": "cadastro/funcoes",
+          "icone": "icone03",
+          "id_aplicacao_pai": 1,
+          "ordem": 3
+        }
+      ]
+    },
+    {
+      "id_aplicacao": 5,
+      "nome_exibicao": "Menu Pai 2",
+      "url_acesso": "#",
+      "icone": "icone",
+      "id_aplicacao_pai": null,
+      "ordem": 2,
+      "child_menus": [
+        {
+          "id_aplicacao": 6,
+          "nome_exibicao": "Menu filho 1",
+          "url_acesso": "filho/um",
+          "icone": "icone01",
+          "id_aplicacao_pai": 5,
+          "ordem": 1
+        },
+        {
+          "id_aplicacao": 7,
+          "nome_exibicao": "Menu filho 2",
+          "url_acesso": "filho/dois",
+          "icone": "icone02",
+          "id_aplicacao_pai": 5,
+          "ordem": 2
+        },
+        {
+          "id_aplicacao": 8,
+          "nome_exibicao": "Menu filho 3",
+          "url_acesso": "filho/tres",
+          "icone": "icone03",
+          "id_aplicacao_pai": 5,
+          "ordem": 3
+        }
+      ]
+    }
+  ]
+}

@@ -7,9 +7,6 @@ import NotFound from './views/Autenticacao/NotFound'
 import Home from './views/Home'
 import adminRouter from '@/views/Admin/adminRouter'
 import Dashboard from '@/views/Home/Dashboard'
-import Funcionario from '@/views/Home/Funcionario'
-import EmpresasCorporacoes from '@/views/Home/EmpresasCorporacoes'
-import Reports from '@/views/Home/Report'
 import autenticacaoService from '@/services/autenticacao'
 
 Vue.use(Router);
@@ -20,10 +17,7 @@ const homeRouter = {
   component: Home,
   children: [
     adminRouter,
-    { path: 'dashboard', name: 'dashboard', component: Dashboard },
-    { path: 'empresa', name: 'empresa', component: EmpresasCorporacoes },
-    { path: 'funcionario', name: 'funcionario', component: Funcionario },
-    { path: 'report', name: 'report', component: Reports }
+    { path: 'dashboard', name: 'dashboard', component: Dashboard }
   ]
 }
 

@@ -1,1 +1,0 @@
-docker run -itd -p 8085:8080 mockenize/mockenize-server

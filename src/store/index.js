@@ -3,13 +3,6 @@ import Vuex from 'vuex'
 import VuexPersistence from 'vuex-persist'
 import autenticacao from './modules/autenticacao'
 import dashboard from './modules/dashboard'
-import empresa from './modules/empresa'
-import funcionario from './modules/funcionario'
-import funcao from './modules/funcao'
-import setor from './modules/setor'
-import exame from './modules/exame'
-import risco from './modules/risco'
-import common from './modules/common'
 
 Vue.use(Vuex)
 
@@ -23,14 +16,7 @@ const vuexLocal = new VuexPersistence({
 export default new Vuex.Store({
   modules: {
     autenticacao,
-    dashboard,
-    empresa,
-    funcionario,
-    exame,
-    common,
-    risco,
-    setor,
-    funcao
+    dashboard
   },
   strict: debug,
   plugins: [vuexLocal.plugin]

@@ -1,8 +1,8 @@
 <template>
-  <v-app :style="{background: $vuetify.theme.themes[theme].background}">
+  <v-app>
     <router-view />
     <page-footer v-if="isAuthenticated()" />
-    <!-- <v-bottom-sheet v-model="envInfoActive">
+    <v-bottom-sheet v-model="envInfoActive">
       <v-sheet height="200px">
         <v-row>
           <v-col>
@@ -20,16 +20,9 @@
           </v-col>
         </v-row>
       </v-sheet>
-    </v-bottom-sheet> -->
-    <!-- <breakpoint /> -->
+    </v-bottom-sheet>
+    <breakpoint />
   </v-app>
-  <!-- <v-app>
-    <v-content>
-      <v-container>
-        <funcao-form :value="true" />
-      </v-container>
-    </v-content>
-  </v-app> -->
 </template>
 
 <script>

@@ -1,28 +1,16 @@
 <template>
   <page-base>
-    <v-layout row align-start justify-start fill-height>
-      <v-flex xs5 class="left" pa-3 style="height: 100%">
-        <v-layout column fill-height>
-          <v-flex shrink>
-            <v-img contain width="110" src="logo.png"></v-img>
-          </v-flex>
-          <v-flex grow>
-            <v-layout align-center fill-height>
-              <v-layout column align-center justify-center>
-                <v-flex>Ajudando você a cuidar da <br /> saúde de seus funcionários</v-flex>
-                <v-flex my-5 px-5>
-                  <v-img height="300" contain src="asoplus.png"></v-img>
-                </v-flex>
-                <v-flex>Não tem uma conta? Registre-se</v-flex>
-              </v-layout>
-            </v-layout>
-          </v-flex>
-        </v-layout>
-      </v-flex>
-      <v-flex xs7 style="height: 100%">
-        <login-form />
-      </v-flex>
-    </v-layout>
+    <v-row align="center" no-gutter class="height">
+      <v-col fill-height>
+        <div class="display-1">Toda Honra ao Senhor Jesus Cristo</div>
+        <div class="display-1">Toda Honra ao Senhor Jesus Cristo testes</div>
+        <div class="display-1">Toda Honra ao Senhor Jesus Cristo</div>
+      </v-col>
+      <v-col align="center">
+        <v-btn x-large color="primary">ENTRAR</v-btn>
+        <!-- <login-form /> -->
+      </v-col>
+    </v-row>
   </page-base>
 </template>
 

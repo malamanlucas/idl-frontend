@@ -1,13 +1,13 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Login from './views/Autenticacao/Login';
-import SessionExpired from './views/Autenticacao/SessionExpired'
-import Unauthorized from './views/Autenticacao/Unauthorized'
-import NotFound from './views/Autenticacao/NotFound'
-import Home from './views/Home'
+import autenticacaoService from '@/services/autenticacao'
 import adminRouter from '@/views/Admin/adminRouter'
 import Dashboard from '@/views/Home/Dashboard'
-import autenticacaoService from '@/services/autenticacao'
+import Login from '@/views/Autenticacao/Login';
+import SessionExpired from '@/views/Autenticacao/SessionExpired'
+import Unauthorized from '@/views/Autenticacao/Unauthorized'
+import NotFound from '@/views/Autenticacao/NotFound'
+import Home from '@/views/Home'
 
 Vue.use(Router);
 

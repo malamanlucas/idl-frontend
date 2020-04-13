@@ -20,6 +20,7 @@ module.exports = {
     'no-param-reassign': 'off',
     'no-return-assign': 'off',
     'no-empty-pattern': 'off',
+    'arrow-parens': 'off',
     'max-len': 'off',
     'no-plusplus': 'off',
     'no-console': 'off',

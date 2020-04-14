@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import autenticacaoService from '@/services/autenticacao'
 import adminRouter from '@/views/Admin/adminRouter'
 import Dashboard from '@/views/Home/Dashboard'
+import Welcome from '@/views/Home/Welcome'
 import Login from '@/views/Autenticacao/Login';
 import SessionExpired from '@/views/Autenticacao/SessionExpired'
 import Unauthorized from '@/views/Autenticacao/Unauthorized'
@@ -17,7 +18,8 @@ const homeRouter = {
   component: Home,
   children: [
     adminRouter,
-    { path: 'dashboard', name: 'dashboard', component: Dashboard }
+    { path: 'dashboard', name: 'dashboard', component: Dashboard },
+    { path: 'welcome', name: 'welcome', component: Welcome },
   ]
 }
 
@@ -71,33 +73,33 @@ function isFromAnyPrivatePage(from) {
   return isPrivatePage(from)
 }
 
-router.beforeEach(async (to, from, next) => {
-  if (isPrivatePage(to)) {
-    if (autenticacaoService.isAuthenticated()) {
-      next()
-    } else if (isFromAnyPrivatePage(from)) {
-      next({ name: 'sessionExpired' })
-    } else {
-      next({ name: 'unauthorized' })
-    }
-  } else if (isPublicPage(to)) {
-    next()
-  } else if (isHomePage(to)) {
-    if (!autenticacaoService.isAuthenticated()) {
-      next({ name: 'login' })
-    } else {
-      next({ name: 'dashboard' })
-    }
-  } else if (isLoginPage(to)) { // at this point the user is not authenticated
-    if (!autenticacaoService.isAuthenticated()) {
-      next()
-    } else {
-      next({ name: 'dashboard' })
-      // router.push({ name: 'dashboard' })
-    }
-  } else { // page notFound
-    next({ name: 'notFound' })
-  }
-})
+// router.beforeEach(async (to, from, next) => {
+//   if (isPrivatePage(to)) {
+//     if (autenticacaoService.isAuthenticated()) {
+//       next()
+//     } else if (isFromAnyPrivatePage(from)) {
+//       next({ name: 'sessionExpired' })
+//     } else {
+//       next({ name: 'unauthorized' })
+//     }
+//   } else if (isPublicPage(to)) {
+//     next()
+//   } else if (isHomePage(to)) {
+//     if (!autenticacaoService.isAuthenticated()) {
+//       next({ name: 'login' })
+//     } else {
+//       next({ name: 'dashboard' })
+//     }
+//   } else if (isLoginPage(to)) { // at this point the user is not authenticated
+//     if (!autenticacaoService.isAuthenticated()) {
+//       next()
+//     } else {
+//       next({ name: 'dashboard' })
+//       // router.push({ name: 'dashboard' })
+//     }
+//   } else { // page notFound
+//     next({ name: 'notFound' })
+//   }
+// })
 
 export default router

@@ -1,8 +1,10 @@
 <template>
   <v-app>
+    <page-header @on-click-menu="drawer = !drawer" />
+    <page-navigation v-model="drawer" />
     <router-view />
-    <page-footer v-if="isAuthenticated()" />
-    <v-bottom-sheet v-model="envInfoActive">
+    <page-footer />
+    <!-- <v-bottom-sheet v-model="envInfoActive">
       <v-sheet height="200px">
         <v-row>
           <v-col>
@@ -21,7 +23,7 @@
         </v-row>
       </v-sheet>
     </v-bottom-sheet>
-    <breakpoint />
+    <breakpoint /> -->
   </v-app>
 </template>
 
@@ -29,13 +31,16 @@
 import Breakpoint from '@/core/components/Breakpoint'
 import PageFooter from '@/core/components/PageFooter'
 import autenticacaoService from '@/services/autenticacao'
+import PageHeader from '@/core/components/PageHeader'
+import PageNavigation from '@/core/components/PageNavigation'
 
 
 export default {
   name: 'App',
   data: () => ({
     env: process.env,
-    envInfoActive: true
+    envInfoActive: true,
+    drawer: false
   }),
   computed: {
     theme() {
@@ -44,7 +49,9 @@ export default {
   },
   components: {
     Breakpoint,
-    PageFooter
+    PageFooter,
+    PageNavigation,
+    PageHeader
   },
   methods: {
     isAuthenticated() {
@@ -53,63 +60,3 @@ export default {
   }
 };
 </script>
-
-<style>
-:root {
-  --primary: #006bf2;
-  --secondary: #F6F7FA;
-  --background: #F0F3F5;
-  --grey: #535D67;
-  --greylight: '#707070';
-  --greysoft: '#d7d7d7';
-}
-
-.page-title{
-  font-size:2em;
-  font-weight:normal;
-  color:var(--greylight);
-}
-
-/*
- * Tabs
- *
-*/
-
-.v-slide-group__content {
-  border-bottom: solid 1px #d7d7d7;
-}
-
-
-/*
- * Tabs and Tooltip effects
- *
- */
-
-.v-ripple__container {
-  background: transparent;
-}
-
-.v-tab:before {
-  background: transparent;
-}
-
-
-/*
- * Buttons
- *
-*/
-
-button:focus{
-  outline-style: none !important;
-}
-
-/*
- * Pagination
- *
-*/
-.v-pagination__item,
-.v-pagination__item--active,
-.v-pagination__navigation {
-  box-shadow: none !important;
-}
-</style>

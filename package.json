@@ -1,5 +1,5 @@
 {
-  "name": "plataforma-front",
+  "name": "idl-frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -26,6 +26,13 @@
     "text-mask-addons": "^3.8.0",
     "vue": "^2.6.11",
     "vue-chartjs": "^3.4.2",
+    "vue-cli-plugin-vuetify-preset-basil": "^1.0.3",
+    "vue-cli-plugin-vuetify-preset-crane": "^1.0.2",
+    "vue-cli-plugin-vuetify-preset-fortnightly": "^1.0.3",
+    "vue-cli-plugin-vuetify-preset-owl": "^1.0.3",
+    "vue-cli-plugin-vuetify-preset-rally": "^1.0.3",
+    "vue-cli-plugin-vuetify-preset-reply": "^1.0.3",
+    "vue-cli-plugin-vuetify-preset-shrine": "^1.0.3",
     "vue-focus": "^2.1.0",
     "vue-router": "^3.1.6",
     "vue-text-mask": "^6.1.2",

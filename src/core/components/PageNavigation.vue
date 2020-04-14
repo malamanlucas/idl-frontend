@@ -18,7 +18,7 @@
               :key="item.title"
               link>
               <v-list-item-icon>
-                <v-btn class="text-none mr-2 ml-2" icon color="blue" >
+                <v-btn class="text-none mr-2 ml-2" icon >
                   <v-icon>{{ item.icon }}</v-icon>
                 </v-btn>
               </v-list-item-icon>
@@ -28,16 +28,6 @@
             </v-list-item>
           </v-list-item-group>
         </v-list>
-          <v-btn
-            absolute
-            bottom
-            class="mr-2 ml-2 text-none"
-            icon
-            right
-            color="blue-grey lighten-3"
-            @click="isCollapsed = !isCollapsed">
-            <v-icon>{{ iconToggleCollapse }}</v-icon>
-          </v-btn>
     </v-navigation-drawer>
   </div>
 </template>
@@ -57,9 +47,8 @@ export default {
     ],
     items: [
       { title: 'Administrador', icon: 'mdi-apps', routeName: 'admin' },
+      { title: 'Welcome', icon: 'mdi-apps', routeName: 'welcome' },
       { title: 'Dashboard', icon: 'mdi-apps', routeName: 'dashboard' },
-      { title: 'Funcionários', icon: 'mdi-account-multiple', routeName: 'funcionario' },
-      { title: 'Minhas Empresas', icon: 'mdi-store', routeName: 'empresa' },
       { title: 'Relatórios', icon: 'mdi-chart-bar', routeName: 'report' }
     ]
   }),

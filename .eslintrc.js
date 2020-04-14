@@ -8,7 +8,7 @@ module.exports = {
     '@vue/airbnb'
   ],
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-console': 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'comma-dangle': 'off',
     'no-throw-literal': 'off',
@@ -16,6 +16,7 @@ module.exports = {
     'no-shadow': 'off',
     indent: 'off',
     'keyword-spacing': 'off',
+    'no-unused-vars': 'off',
     'no-restricted-syntax': 'off',
     'no-param-reassign': 'off',
     'no-return-assign': 'off',
@@ -23,7 +24,6 @@ module.exports = {
     'arrow-parens': 'off',
     'max-len': 'off',
     'no-plusplus': 'off',
-    'no-console': 'off',
     'import/no-unresolved': 'off',
     'no-extend-native': 'off',
     'no-useless-escape': 'off',

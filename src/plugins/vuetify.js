@@ -1,13 +1,13 @@
 import Vue from 'vue';
 import Vuetify from 'vuetify/lib';
 import pt from 'vuetify/es5/locale/pt';
-// import { preset } from 'vue-cli-plugin-vuetify-preset-basil/preset'
+import { preset } from 'vue-cli-plugin-vuetify-preset-basil/preset'
 // import { preset } from 'vue-cli-plugin-vuetify-preset-crane/preset'
 // import { preset } from 'vue-cli-plugin-vuetify-preset-fortnightly/preset'
 // import { preset } from 'vue-cli-plugin-vuetify-preset-owl/preset'
 // import { preset } from 'vue-cli-plugin-vuetify-preset-rally/preset'
 // import { preset } from 'vue-cli-plugin-vuetify-preset-reply/preset'
-import { preset } from 'vue-cli-plugin-vuetify-preset-shrine/preset'
+// import { preset } from 'vue-cli-plugin-vuetify-preset-shrine/preset'
 
 Vue.use(Vuetify);
 

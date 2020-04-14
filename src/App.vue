@@ -1,7 +1,6 @@
 <template>
   <v-app>
     <page-header @on-click-menu="drawer = !drawer" />
-    <page-navigation v-model="drawer" />
     <router-view />
     <page-footer />
     <!-- <v-bottom-sheet v-model="envInfoActive">

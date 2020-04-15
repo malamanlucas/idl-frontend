@@ -22,7 +22,7 @@
         </v-row>
       </v-sheet>
     </v-bottom-sheet> -->
-    <breakpoint />
+    <!-- <breakpoint /> -->
   </v-app>
 </template>
 

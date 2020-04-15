@@ -12,7 +12,7 @@ import { preset } from 'vue-cli-plugin-vuetify-preset-basil/preset'
 Vue.use(Vuetify);
 
 export default new Vuetify({
-  preset,
+  // preset,
   lang: {
     locales: { pt },
     current: 'pt'

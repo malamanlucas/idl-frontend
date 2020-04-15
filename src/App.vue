@@ -21,8 +21,8 @@
           </v-col>
         </v-row>
       </v-sheet>
-    </v-bottom-sheet>
-    <breakpoint /> -->
+    </v-bottom-sheet> -->
+    <breakpoint />
   </v-app>
 </template>
 

@@ -16,20 +16,30 @@
     <v-col cols="12">
       <v-row dense align="start">
         <v-col cols="9" sm="6">
-          <v-text-field prepend-inner-icon="mdi-magnify" autofocus
-                ref="textSearch" outlined label="Pesquisar" class="pesquisar-sentenca"
-                v-model="request.termo" @keyup.enter="search"></v-text-field>
+          <v-form v-model="isValid" @submit.prevent>
+            <v-text-field prepend-inner-icon="mdi-magnify" autofocus :rules="rulesSearch"
+                  ref="textSearch" outlined label="Pesquisar" class="pesquisar-sentenca"
+                  v-model="request.termo" @keyup.enter="search"></v-text-field>
+          </v-form>
         </v-col>
         <v-col class="mb-0">
           <v-btn color="primary" @click="search" large
-            :fab="$vuetify.breakpoint.xsOnly">
+            :fab="$vuetify.breakpoint.xsOnly" :disabled="!isValid">
             <v-icon :left="$vuetify.breakpoint.smAndUp">mdi-magnify</v-icon>
             <div class="d-none d-sm-flex">Buscar</div>
           </v-btn>
         </v-col>
         <v-col cols="12">
-          <v-checkbox v-model="request.ignoreCase" class="ma-0 pa-0"
-            label="Ignorar maiusculo ou minusculas?" />
+          <v-row dense>
+            <v-col cols="auto" class="mr-5">
+              <v-checkbox v-model="request.ignoreCase" class="ma-0 pa-0"
+                label="Ignorar maiusculo ou minusculas?" />
+            </v-col>
+            <v-col cols="auto">
+              <v-checkbox v-model="request.ignoreAccent" class="ma-0 pa-0"
+                label="Ignorar acentos?" />
+            </v-col>
+          </v-row>
         </v-col>
       </v-row>
     </v-col>
@@ -39,13 +49,29 @@
         {{ sentencas.total }} ocorrência(s)
       </div>
 
-      <v-list rounded>
-        <v-list-item cols="12" v-for="(texto, $textoIndex) of sentencas.textos" :key="$textoIndex">
-          <v-list-item-content>
-            <div v-html="highlight(texto)"></div>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
+      <template v-if="isLoaded">
+        <v-data-iterator
+          :items="items"
+          item-key="id"
+          @page-count="pageCount = $event"
+          class="elevation-1"
+          dense
+          :fixed-header="true" :items-per-page="itemsPerPage" :page.sync="page"
+          hide-default-footer>
+          <template #item="{ item }">
+            <div class="px-2 pt-1" v-html="highlight(item.texto)" />
+          </template>
+        </v-data-iterator>
+
+        <v-pagination v-if="shouldShowPagination"
+          v-model="page"
+          :total-visible="totalVisible"
+          :length="pageCount"
+          circle
+          color="primary"
+          class="paginnation-default"
+        ></v-pagination>
+      </template>
 
     </v-col>
   </v-row>
@@ -65,14 +91,41 @@
 
   export default {
     data: () => ({
+      rulesSearch: [
+        value => !!value || 'Obrigatório'
+      ],
+      isValid: true,
       sentencas: null,
       request: {
         termo: '',
-        ignoreCase: true
-      }
+        ignoreCase: true,
+        ignoreAccent: true
+      },
+      itemsPerPage: 200,
+      pageCount: 0,
+      totalVisible: 7,
+      page: 1,
     }),
+    computed: {
+      isLoaded() {
+        return this.sentencas !== null
+      },
+      items() {
+        if (this.isLoaded) {
+          return this.sentencas.textos
+        }
+        return []
+      },
+      shouldShowPagination() {
+        return this.pageCount > 1
+      }
+    },
     methods: {
       async search() {
+        if (!this.isValid) {
+          this.$refs.textSearch.focus()
+          return
+        }
         try {
           this.showLoading()
           const response = await sentencaService.search(this.request)

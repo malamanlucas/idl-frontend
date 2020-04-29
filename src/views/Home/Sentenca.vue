@@ -9,9 +9,16 @@
       </v-btn>
     </v-col>
     <v-col cols="12">
-      <div class="title font-weight-bold">
-        Buscar na bíblia por sentenças
-      </div>
+      <v-row no-gutters>
+        <v-col cols="auto" class="mr-3">
+          <div class="title font-weight-bold">
+            Buscar na bíblia por sentenças
+          </div>
+        </v-col>
+        <v-col>
+          <SentencaVersaoFilter />
+        </v-col>
+      </v-row>
     </v-col>
     <v-col cols="12">
       <v-row dense align="start">
@@ -19,7 +26,7 @@
           <v-form v-model="isValid" @submit.prevent>
             <v-text-field prepend-inner-icon="mdi-magnify" autofocus :rules="rulesSearch"
                   ref="textSearch" outlined label="Pesquisar" class="pesquisar-sentenca"
-                  v-model="request.termo" @keyup.enter="search"></v-text-field>
+                  v-model="termo" @keyup.enter="search"></v-text-field>
           </v-form>
         </v-col>
         <v-col class="mb-0">
@@ -29,14 +36,17 @@
             <div class="d-none d-sm-flex">Buscar</div>
           </v-btn>
         </v-col>
+
+      </v-row>
+      <v-row no-gutters>
         <v-col cols="12">
           <v-row dense>
             <v-col cols="auto" class="mr-5">
-              <v-checkbox v-model="request.ignoreCase" class="ma-0 pa-0"
+              <v-checkbox v-model="ignoreCase" class="ma-0 pa-0"
                 label="Ignorar maiusculo ou minusculas?" />
             </v-col>
             <v-col cols="auto">
-              <v-checkbox v-model="request.ignoreAccent" class="ma-0 pa-0"
+              <v-checkbox v-model="ignoreAccent" class="ma-0 pa-0"
                 label="Ignorar acentos?" />
             </v-col>
           </v-row>
@@ -86,8 +96,10 @@
 </style>
 
 <script>
+  import { mapGetters } from 'vuex'
   import { isEmpty, get } from 'lodash'
   import sentencaService from '@/services/sentenca'
+  import SentencaVersaoFilter from '@/module/Sentenca/SentencaVersaoFilter'
 
   export default {
     data: () => ({
@@ -96,17 +108,19 @@
       ],
       isValid: true,
       sentencas: null,
-      request: {
-        termo: '',
-        ignoreCase: true,
-        ignoreAccent: true
-      },
+      termo: '',
+      ignoreCase: true,
+      ignoreAccent: true,
       itemsPerPage: 200,
       pageCount: 0,
       totalVisible: 7,
       page: 1,
     }),
+    components: {
+      SentencaVersaoFilter
+    },
     computed: {
+      ...mapGetters('sentenca', ['mainVersion']),
       isLoaded() {
         return this.sentencas !== null
       },
@@ -118,6 +132,14 @@
       },
       shouldShowPagination() {
         return this.pageCount > 1
+      },
+      request() {
+        return {
+          termo: this.termo,
+          ignoreCase: this.ignoreCase,
+          ignoreAccent: this.ignoreAccent,
+          versoes: [this.mainVersion]
+        }
       }
     },
     methods: {
@@ -139,11 +161,11 @@
         }
       },
       highlight(item) {
-        if (isEmpty(this.request.termo)) {
+        if (isEmpty(this.termo)) {
           return item
         }
         item = item.replace(/^[\w\W.]+\d/, reference => `<i class="font-weight-bold">${reference}</i>`)
-        return item.replace(new RegExp(`(${this.request.termo})`, 'gi'), '<u class="text-primary font-weight-bold">$1</u>')
+        return item.replace(new RegExp(`(${this.termo})`, 'gi'), '<u class="text-primary font-weight-bold">$1</u>')
       }
     }
   }

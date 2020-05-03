@@ -54,36 +54,7 @@
       </v-row>
     </v-col>
 
-    <v-col cols="12" v-if="sentencas">
-      <div class="subtitle font-weight-bold">
-        {{ sentencas.total }} ocorrência(s)
-      </div>
-
-      <template v-if="isLoaded">
-        <v-data-iterator
-          :items="items"
-          item-key="id"
-          @page-count="pageCount = $event"
-          class="elevation-1"
-          dense
-          :fixed-header="true" :items-per-page="itemsPerPage" :page.sync="page"
-          hide-default-footer>
-          <template #item="{ item }">
-            <div class="px-2 pt-1" v-html="highlight(item.texto)" />
-          </template>
-        </v-data-iterator>
-
-        <v-pagination v-if="shouldShowPagination"
-          v-model="page"
-          :total-visible="totalVisible"
-          :length="pageCount"
-          circle
-          color="primary"
-          class="paginnation-default"
-        ></v-pagination>
-      </template>
-
-    </v-col>
+    <SentencaList :sentencas="sentencas" :termo="termo" @on-item-expanded="focusInTextSearch" />
   </v-row>
 </template>
 
@@ -100,6 +71,7 @@
   import { isEmpty, get } from 'lodash'
   import sentencaService from '@/services/sentenca'
   import SentencaVersaoFilter from '@/module/Sentenca/SentencaVersaoFilter'
+  import SentencaList from '@/module/Sentenca/SentencaList'
 
   export default {
     data: () => ({
@@ -111,28 +83,13 @@
       termo: '',
       ignoreCase: true,
       ignoreAccent: true,
-      itemsPerPage: 200,
-      pageCount: 0,
-      totalVisible: 7,
-      page: 1,
     }),
     components: {
-      SentencaVersaoFilter
+      SentencaList,
+      SentencaVersaoFilter,
     },
     computed: {
       ...mapGetters('sentenca', ['mainVersion']),
-      isLoaded() {
-        return this.sentencas !== null
-      },
-      items() {
-        if (this.isLoaded) {
-          return this.sentencas.textos
-        }
-        return []
-      },
-      shouldShowPagination() {
-        return this.pageCount > 1
-      },
       request() {
         return {
           termo: this.termo,
@@ -143,6 +100,9 @@
       }
     },
     methods: {
+      focusInTextSearch() {
+        this.$refs.textSearch.focus()
+      },
       async search() {
         if (!this.isValid) {
           this.$refs.textSearch.focus()
@@ -153,19 +113,12 @@
           const response = await sentencaService.search(this.request)
           this.sentencas = response.data
           await this.$nextTick()
-          this.$refs.textSearch.focus()
+          this.focusInTextSearch()
         } catch (e) {
           this.showErrorOnSnackbar(get(e, 'response.data.err.message', e))
         } finally {
           this.hideLoading()
         }
-      },
-      highlight(item) {
-        if (isEmpty(this.termo)) {
-          return item
-        }
-        item = item.replace(/^[\w\W.]+\d/, reference => `<i class="font-weight-bold">${reference}</i>`)
-        return item.replace(new RegExp(`(${this.termo})`, 'gi'), '<u class="text-primary font-weight-bold">$1</u>')
       }
     }
   }

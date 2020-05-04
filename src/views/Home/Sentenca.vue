@@ -30,10 +30,10 @@
           </v-form>
         </v-col>
         <v-col class="mb-0">
-          <v-btn color="primary" @click="search" large
+          <v-btn color="primary" @click="search" x-large
             :fab="$vuetify.breakpoint.xsOnly" :disabled="!isValid">
             <v-icon :left="$vuetify.breakpoint.smAndUp">mdi-magnify</v-icon>
-            <div class="d-none d-sm-flex">Buscar</div>
+            <div class="d-none d-sm-flex">BUSCAR</div>
           </v-btn>
         </v-col>
 

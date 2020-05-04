@@ -5,13 +5,13 @@
         filled :items="versoes" item-text="nome" item-value="id"></v-select>
     </v-col>
     <v-col>
-      <v-combobox
+      <v-select
         v-model="versionsCompareWrapper"
         :items="avaiableVersoesCompare"
         label="Traduções comparar"
-        item-text="abreviacao" item-value="id"
+        item-text="abreviacao" return-object
         multiple dense outlined small-chips
-      ></v-combobox>
+      ></v-select>
     </v-col>
   </v-row>
 </template>

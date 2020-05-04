@@ -14,8 +14,12 @@
         :fixed-header="true" :items-per-page="itemsPerPage" :page.sync="page"
         hide-default-footer>
         <template #item="{ item, expand, isExpanded }">
-          <div @click.self.stop="toggleExpand(isExpanded, item, expand)"
-            class="px-2 pt-1" v-html="highlight(item.texto)" />
+          <v-hover #default="{ hover }">
+            <v-card :elevation="hover ? 12 : 2" :class="{ 'on-hover': hover }">
+              <div @click.self.stop="toggleExpand(isExpanded, item, expand)"
+                class="px-2 pt-1" v-html="highlight(item.texto)" />
+            </v-card>
+          </v-hover>
           <template v-if="isExpanded">
             <div class="pl-5 pr-3" v-for="(texto, index) of item.textosComparados" :key="index">
               <span class="body-2" v-html="highlightSubTexto(texto.textoMontado)" />
@@ -65,8 +69,8 @@
         }
         return []
       },
-      versoesIdCompare() {
-        return this.versionsCompare.map(v => v.id)
+      versionsIdCompare() {
+        return this.versionsCompare.map(e => e.id)
       }
     },
     methods: {
@@ -89,7 +93,7 @@
                 versiculoId: item.versiculoId,
                 livroId: item.livroId,
                 capituloId: item.capituloId,
-                versoesId: this.versoesIdCompare
+                versoesId: this.versionsIdCompare
               })
             this.$set(item, 'textosComparados', response.data)
             await this.$nextTick()

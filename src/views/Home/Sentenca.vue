@@ -16,7 +16,13 @@
           </div>
         </v-col>
         <v-col>
-          <SentencaVersaoFilter />
+          Gerenciar traduções
+          <v-btn fab dark small bottom left @click="activeModalFilterVersions = true">
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
+        </v-col>
+        <v-col>
+          <ModalFilterVersions v-model="activeModalFilterVersions" />
         </v-col>
       </v-row>
     </v-col>
@@ -70,7 +76,7 @@
   import { mapGetters } from 'vuex'
   import { isEmpty, get } from 'lodash'
   import sentencaService from '@/services/sentenca'
-  import SentencaVersaoFilter from '@/module/Sentenca/SentencaVersaoFilter'
+  import ModalFilterVersions from '@/module/Sentenca/ModalFilterVersions'
   import SentencaList from '@/module/Sentenca/SentencaList'
 
   export default {
@@ -79,6 +85,7 @@
         value => !!value || 'Obrigatório'
       ],
       isValid: true,
+      activeModalFilterVersions: true,
       sentencas: null,
       termo: '',
       ignoreCase: true,
@@ -86,7 +93,7 @@
     }),
     components: {
       SentencaList,
-      SentencaVersaoFilter,
+      ModalFilterVersions,
     },
     computed: {
       ...mapGetters('sentenca', ['mainVersion']),

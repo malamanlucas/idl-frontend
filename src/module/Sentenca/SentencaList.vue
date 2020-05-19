@@ -56,7 +56,7 @@
       page: 1
     }),
     computed: {
-      ...mapGetters('sentenca', ['mainVersion', 'versionsCompare']),
+      ...mapGetters('sentenca', ['mainVersion', 'versionsCompare', 'compareVersionsEnabled']),
       shouldShowPagination() {
         return this.pageCount > 1
       },
@@ -86,6 +86,9 @@
         return item.replace(new RegExp(`(${this.termo})`, 'gi'), '<u class="text-primary font-weight-bold">$1</u>')
       },
       async toggleExpand(isExpanded, item, expand) {
+        if (!this.compareVersionsEnabled) {
+          return
+        }
         if (!isExpanded) {
           await this.callAsync(async () => {
             const response = await sentencaService

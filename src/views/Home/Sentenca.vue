@@ -55,12 +55,23 @@
               <v-checkbox v-model="ignoreAccent" class="ma-0 pa-0"
                 label="Ignorar acentos?" />
             </v-col>
+            <v-col cols="auto">
+              <v-radio-group v-model="optionVerseShow" row class="ma-0 pa-0">
+                <v-radio
+                  v-for="n in optionsVerseShow"
+                  :key="n"
+                  :label="n"
+                  :value="n"
+                ></v-radio>
+              </v-radio-group>
+            </v-col>
           </v-row>
         </v-col>
       </v-row>
     </v-col>
 
-    <SentencaList :sentencas="sentencas" :termo="termo" @on-item-expanded="focusInTextSearch" />
+    <SentencaList :optionVerseShow="optionVerseShow"
+      :sentencas="sentencas" :termo="termo" @on-item-expanded="focusInTextSearch" />
   </v-row>
 </template>
 
@@ -81,6 +92,9 @@
 
   export default {
     data: () => ({
+      optionsVerseShow: [
+        "padrao", "sem_nada", "com_versiculo"
+      ],
       rulesSearch: [
         value => !!value || 'Obrigatório'
       ],
@@ -90,6 +104,7 @@
       termo: '',
       ignoreCase: true,
       ignoreAccent: true,
+      optionVerseShow: "padrao"
     }),
     components: {
       SentencaList,

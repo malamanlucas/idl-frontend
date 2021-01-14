@@ -16,8 +16,19 @@
         <template #item="{ item, expand, isExpanded }">
           <v-hover #default="{ hover }">
             <v-card :elevation="hover ? 12 : 2" :class="{ 'on-hover': hover }">
-              <div @click.self.stop="toggleExpand(isExpanded, item, expand)"
-                class="px-2 pt-1" v-html="highlight(item.texto)" />
+              <template v-if="optionVerseShow === 'padrao'">
+                <div @click.self.stop="toggleExpand(isExpanded, item, expand)"
+                  class="px-2 pt-1" v-html="highlight(item.texto)" />
+              </template>
+              <v-template v-else-if="optionVerseShow === 'com_versiculo'">
+                <div @click.self.stop="toggleExpand(isExpanded, item, expand)"
+                  class="px-2 pt-1" v-html="highlight(item.textoComVersiculo)" />
+              </v-template>
+              <v-template v-else-if="optionVerseShow === 'sem_nada'">
+                <div @click.self.stop="toggleExpand(isExpanded, item, expand)"
+                  class="px-2 pt-1" v-html="highlight(item.textoLimpo)" />
+              </v-template>
+
             </v-card>
           </v-hover>
           <template v-if="isExpanded">
@@ -48,7 +59,7 @@
   import delay from 'delay'
 
   export default {
-    props: ['sentencas', 'termo'],
+    props: ['sentencas', 'termo', 'optionVerseShow'],
     data: () => ({
       itemsPerPage: 200,
       pageCount: 0,

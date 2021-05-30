@@ -7,10 +7,15 @@
       Igreja dos loucos
     </v-toolbar-title>
 
-    <v-row>
-      <v-col>
-        <v-btn v-if="shouldSeeLink" link color="info" rounded :to="{ name: 'sentenca' }">
+    <v-row no-gutters>
+      <v-col cols="3">
+        <v-btn v-if="shouldSeeLinkSentenca" link color="info" rounded :to="{ name: 'sentenca' }">
           Buscar na bíblia
+        </v-btn>
+      </v-col>
+      <v-col>
+        <v-btn v-if="shouldSeeLinkMergePdf" link color="primary" rounded :to="{ name: 'merge-pdf' }">
+          Merge PDF
         </v-btn>
       </v-col>
     </v-row>
@@ -24,8 +29,11 @@ export default {
   name: 'PageHeader',
   computed: {
     ...mapGetters('autenticacao', ['username']),
-    shouldSeeLink() {
+    shouldSeeLinkSentenca() {
       return this.$route.name !== 'sentenca'
+    },
+    shouldSeeLinkMergePdf() {
+      return this.$route.name !== 'merge-pdf'
     }
   },
   methods: {

@@ -5,6 +5,7 @@ import adminRouter from '@/views/Admin/adminRouter'
 import Dashboard from '@/views/Home/Dashboard'
 import Welcome from '@/views/Home/Welcome'
 import Sentenca from '@/views/Home/Sentenca'
+import MergePdf from '@/views/Home/MergePdf'
 import Login from '@/views/Autenticacao/Login';
 import SessionExpired from '@/views/Autenticacao/SessionExpired'
 import Unauthorized from '@/views/Autenticacao/Unauthorized'
@@ -21,7 +22,8 @@ const homeRouter = {
     adminRouter,
     { path: 'dashboard', name: 'dashboard', component: Dashboard },
     { path: 'welcome', name: 'welcome', component: Welcome },
-    { path: 'sentenca', name: 'sentenca', component: Sentenca }
+    { path: 'sentenca', name: 'sentenca', component: Sentenca },
+    { path: 'merge/pdf', name: 'merge-pdf', component: MergePdf },
   ]
 }
 
